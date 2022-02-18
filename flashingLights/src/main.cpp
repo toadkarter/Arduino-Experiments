@@ -1,9 +1,9 @@
 #include <Arduino.h>
 
 int ledPin[4] = {7, 8, 12, 13};
-void blinkTogether(int ledPin[]);
-void allLightsOn(int ledPin[]);
-void allLightsOff(int ledPin[]);
+void blinkTogether(int ledPin[], int speed);
+void allLightsOn(int ledPin[], int speed);
+void allLightsOff(int ledPin[], int speed);
 
 void setup() {
   for (size_t i = 0; i < 4; i++)
@@ -13,27 +13,27 @@ void setup() {
 }
 
 void loop() {
-  blinkTogether(ledPin);
+  blinkTogether(ledPin, 1000);
 }
 
-void blinkTogether(int ledPin[]) {
-  allLightsOn(ledPin);
-  allLightsOff(ledPin);
+void blinkTogether(int ledPin[], int speed) {
+  allLightsOn(ledPin, speed);
+  allLightsOff(ledPin, speed);
 }
 
-void allLightsOn(int ledPin[]) {
+void allLightsOn(int ledPin[], int speed) {
   for (size_t i = 0; i < 4; i++)
   {
     digitalWrite(ledPin[i], HIGH);
   }
-  delay(1000);
+  delay(speed);
 }
 
-void allLightsOff(int ledPin[]) {
+void allLightsOff(int ledPin[], int speed) {
   for (size_t i = 0; i < 4; i++)
   {
     digitalWrite(ledPin[i], LOW);
   }
-  delay(1000);
+  delay(speed);
 
 }
