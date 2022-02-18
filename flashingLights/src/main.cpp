@@ -7,14 +7,23 @@ void allLightsOn(int ledPin[]);
 void allLightsOff(int ledPin[]);
 void selectOneBulb(int ledPin[], int bulbNumber);
 void lightsLeftToRight(int ledPin[], int speed);
+void lightsRightToLeft(int ledPin[], int speed);
 
 void setup() {
   setBulbsToOutput(ledPin);
 }
 
 void loop() {
-  blinkTogether(ledPin, 1000);
-  lightsLeftToRight(ledPin, 500);
+  for (int i = 0; i < 6; i++)
+  {
+    blinkTogether(ledPin, 300);
+  }
+
+  for (int i = 0; i < 6; i++)
+  {
+    lightsLeftToRight(ledPin, 100);
+    lightsRightToLeft(ledPin, 100);
+  }
 }
 
 void setBulbsToOutput(int ledPin[]) {
@@ -47,6 +56,16 @@ void allLightsOff(int ledPin[]) {
 
 void lightsLeftToRight(int ledPin[], int speed) {
   for (int i = 0; i < 4; i++) {
+    selectOneBulb(ledPin, i);
+    delay(speed);
+  }
+  allLightsOff(ledPin);
+  delay(speed);
+}
+
+void lightsRightToLeft(int ledPin[], int speed) {
+  for (int i = 4; i >= 0; i--)
+  {
     selectOneBulb(ledPin, i);
     delay(speed);
   }
